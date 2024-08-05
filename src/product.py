@@ -2,6 +2,7 @@ class Product:
     """
     Класс продуктов интернет магазина
     """
+
     name: str
     description: str
     price: float

@@ -2,7 +2,6 @@ class Product:
     """
     Класс продуктов интернет магазина
     """
-
     name: str
     description: str
     price: float
@@ -12,7 +11,7 @@ class Product:
         """
         Конструктор объектов
         """
-        self.name == name
-        self.description == description
-        self.price == price
-        self.quantity == quantity
+        self.name = name
+        self.description = description
+        self.price = price
+        self.quantity = quantity

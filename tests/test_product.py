@@ -45,3 +45,11 @@ def test_product_price(first_product: Product, capsys: Any) -> None:
         mock_input.return_value = "n"
         first_product.price = 1000
         assert first_product.price == 1300
+
+
+def test_product_str(first_product: Product) -> None:
+    assert str(first_product) == "Iphone 15, 1500 руб. Остаток: 10 шт."
+
+
+def test_product_add(first_product: Product, second_product: Product) -> None:
+    assert first_product + second_product == 33_000

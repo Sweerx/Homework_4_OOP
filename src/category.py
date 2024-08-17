@@ -23,6 +23,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+    def __str__(self) -> str:
+        """
+        Формирует отображение информации об объекте класса для пользователей
+        """
+        all_products_quantity = sum(product.quantity for product in self.products_list)
+        return f"{self.name}, количество продуктов: {all_products_quantity} шт."
+
     @property
     def products(self) -> str:
         result = ""

@@ -22,6 +22,18 @@ class Product:
         self.quantity = quantity
         Product.products_list.append(self)
 
+    def __str__(self) -> str:
+        """
+        Формирует отображение информации об объекте класса для пользователей
+        """
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: "Product") -> float:
+        """
+        Возвращает полную стоимость всех товаров на складе для складываемых объектов
+        """
+        return self.quantity * self.price + other.quantity * other.price
+
     @classmethod
     def new_product(cls, product: dict) -> Any:
         for prod in cls.products_list:

@@ -24,3 +24,7 @@ def test_category_add_product(
     assert first_cat.products_list == [first_product, second_product]
     first_cat.add_product(third_product)
     assert first_cat.products_list == [first_product, second_product, third_product]
+
+
+def test_category_str_(first_cat: Category) -> None:
+    assert str(first_cat) == "Apple, количество продуктов: 25 шт."

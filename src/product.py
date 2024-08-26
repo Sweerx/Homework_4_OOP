@@ -56,7 +56,7 @@ class Product(BaseProduct, MixinLog):
         raise TypeError("Можно складывать товары только одного класса")
 
     @classmethod
-    def new_product(cls, product: dict) -> Any:
+    def new_product(cls, product: dict) -> Any:  # type: ignore[override]
         for prod in cls.products_list:
             if prod.name == product["name"]:
                 prod.price = max(prod.price, product["price"])
@@ -91,15 +91,15 @@ class Product(BaseProduct, MixinLog):
 class Smartphone(Product):
 
     def __init__(
-            self,
-            name: str,
-            description: str,
-            price: float,
-            quantity: int,
-            efficiency: float,
-            model: str,
-            memory: int,
-            color: str,
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -120,14 +120,14 @@ class Smartphone(Product):
 class LawnGrass(Product):
 
     def __init__(
-            self,
-            name: str,
-            description: str,
-            price: float,
-            quantity: int,
-            country: str,
-            germination_period: str,
-            color: str,
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.country = country

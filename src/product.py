@@ -1,7 +1,23 @@
+from abc import ABC, abstractmethod
 from typing import Any
 
 
-class Product:
+class BaseProduct(ABC):
+
+    @abstractmethod
+    def __init__(self, name: str, description: str, price: float, quantity: int):
+        self.name = name
+        self.description = description
+        self.__price = price
+        self.quantity = quantity
+
+    @classmethod
+    @abstractmethod
+    def new_product(cls, *args: list, **kwargs: dict) -> None:
+        pass
+
+
+class Product(BaseProduct):
     """
     Класс продуктов интернет магазина
     """
@@ -73,15 +89,15 @@ class Product:
 class Smartphone(Product):
 
     def __init__(
-        self,
-        name: str,
-        description: str,
-        price: float,
-        quantity: int,
-        efficiency: float,
-        model: str,
-        memory: int,
-        color: str,
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            efficiency: float,
+            model: str,
+            memory: int,
+            color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -102,14 +118,14 @@ class Smartphone(Product):
 class LawnGrass(Product):
 
     def __init__(
-        self,
-        name: str,
-        description: str,
-        price: float,
-        quantity: int,
-        country: str,
-        germination_period: str,
-        color: str,
+            self,
+            name: str,
+            description: str,
+            price: float,
+            quantity: int,
+            country: str,
+            germination_period: str,
+            color: str,
     ):
         super().__init__(name, description, price, quantity)
         self.country = country

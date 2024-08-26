@@ -1,21 +1,13 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+from src.mixin_log import MixinLog
+
 
 class BaseProduct(ABC):
     """
     Абстрактный класс для всех продуктов
     """
-
-    @abstractmethod
-    def __init__(self, name: str, description: str, price: float, quantity: int):
-        """
-        Конструктор объектов
-        """
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
 
     @classmethod
     @abstractmethod
@@ -26,7 +18,7 @@ class BaseProduct(ABC):
         pass
 
 
-class Product(BaseProduct):
+class Product(BaseProduct, MixinLog):
     """
     Класс продуктов интернет магазина
     """
@@ -46,6 +38,7 @@ class Product(BaseProduct):
         self.__price = price
         self.quantity = quantity
         Product.products_list.append(self)
+        super().__init__()
 
     def __str__(self) -> str:
         """

@@ -3,9 +3,15 @@ from typing import Any
 
 
 class BaseProduct(ABC):
+    """
+    Абстрактный класс для всех продуктов
+    """
 
     @abstractmethod
     def __init__(self, name: str, description: str, price: float, quantity: int):
+        """
+        Конструктор объектов
+        """
         self.name = name
         self.description = description
         self.__price = price
@@ -14,6 +20,9 @@ class BaseProduct(ABC):
     @classmethod
     @abstractmethod
     def new_product(cls, *args: list, **kwargs: dict) -> None:
+        """
+        Создает новый продукт
+        """
         pass
 
 

@@ -57,6 +57,11 @@ def test_product_add(first_product: Product, second_product: Product) -> None:
     assert first_product + second_product == 33_000
 
 
+def test_product_add_error(first_product: Product) -> None:
+    with pytest.raises(TypeError):
+        first_product + 1  # type: ignore[operator]
+
+
 def test_smartphone_init(first_smartphone_prod: Smartphone) -> None:
     assert first_smartphone_prod.name == "Samsung Galaxy S23 Ultra"
     assert first_smartphone_prod.description == "256GB, Серый цвет, 200MP камера"
@@ -94,3 +99,8 @@ def test_lawn_grass_add(first_lawn_grass_prod: LawnGrass, second_lawn_grass_prod
 def test_lawn_grass_add_error(first_lawn_grass_prod: LawnGrass) -> None:
     with pytest.raises(TypeError):
         first_lawn_grass_prod + 1  # type: ignore
+
+
+def test_product_with_zero_quantity() -> None:
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 0)

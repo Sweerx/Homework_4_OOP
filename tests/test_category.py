@@ -28,3 +28,10 @@ def test_category_add_product(
 
 def test_category_str_(first_cat: Category) -> None:
     assert str(first_cat) == "Apple, количество продуктов: 25 шт."
+
+
+def test_product_middle_price(first_cat: Category) -> None:
+    assert first_cat.middle_price() == 1350
+
+    new_cat = Category("Invalid", "Invalid", [])
+    assert new_cat.middle_price() == 0

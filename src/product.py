@@ -1,7 +1,24 @@
+from abc import ABC, abstractmethod
 from typing import Any
 
+from src.mixin_log import MixinLog
 
-class Product:
+
+class BaseProduct(ABC):
+    """
+    Абстрактный класс для всех продуктов
+    """
+
+    @classmethod
+    @abstractmethod
+    def new_product(cls, *args: list, **kwargs: dict) -> None:
+        """
+        Создает новый продукт
+        """
+        pass
+
+
+class Product(BaseProduct, MixinLog):
     """
     Класс продуктов интернет магазина
     """
@@ -21,6 +38,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         Product.products_list.append(self)
+        super().__init__()
 
     def __str__(self) -> str:
         """
@@ -38,7 +56,7 @@ class Product:
         raise TypeError("Можно складывать товары только одного класса")
 
     @classmethod
-    def new_product(cls, product: dict) -> Any:
+    def new_product(cls, product: dict) -> Any:  # type: ignore[override]
         for prod in cls.products_list:
             if prod.name == product["name"]:
                 prod.price = max(prod.price, product["price"])

@@ -1,3 +1,5 @@
+from typing import Any
+
 from src.product import Product
 
 
@@ -9,7 +11,6 @@ class Category:
     name: str
     description: str
     __products: list
-
     category_count: int = 0
     product_count: int = 0
 
@@ -50,3 +51,14 @@ class Category:
         """
         self.__products.append(new_product)
         Category.category_count += 1
+
+    def middle_price(self) -> Any:
+        """
+        подсчитывает средний ценник всех товаров
+        """
+
+        try:
+            result = round(sum([el.price for el in self.__products]) / len(self.__products), 2)
+        except ZeroDivisionError:
+            result = 0
+        return result

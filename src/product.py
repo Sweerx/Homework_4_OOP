@@ -39,6 +39,8 @@ class Product(BaseProduct, MixinLog):
         self.quantity = quantity
         Product.products_list.append(self)
         super().__init__()
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     def __str__(self) -> str:
         """
